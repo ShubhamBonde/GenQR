@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block body %}
+<script async type=text/javascript src="{{
+    url_for('static', filename='app.js') }}"></script>
+  
+<div class="qrspace">
+    <div class="qrblock">
+        <h1>Your QR</h1>
+        <div class="qrcode">
+            <form action="/show" method="post">
+                <image src="{{url_for('static', filename='/images/generated-qr.png')}}" alt="qrcode" width="300" height="300"></image>
+            </form>
+        </div>
+        <h2>Qrtext: {{url}}</h2>
+        <button><a href={{url_for("download_file")}}>Download</a></button>
+    </div>
+</div>
+{% endblock %}
