@@ -3,16 +3,20 @@
 <script async type=text/javascript src="{{
     url_for('static', filename='app.js') }}"></script>
   
-<div class="qrspace">
+
+
+<div class="qr-container">
     <div class="qrblock">
-        <h1>Your QR</h1>
+        <h1 class="qr-title">Your QR</h1>
         <div class="qrcode">
             <form action="/show" method="post">
-                <image src="{{url_for('static', filename='/images/generated-qr.png')}}" alt="qrcode" width="300" height="300"></image>
+                <img  class="generated_qr" src="data:image/png;base64,{{res}} " alt="qrcode" width="300" height="300"/>
             </form>
         </div>
-        <h2>Qrtext: {{url}}</h2>
-        <button><a href={{url_for("download_file")}}>Download</a></button>
+        <h2>Scan this QR Or download below 👇</h2>
+        <a class="download-qr" href="data:image/png;base64,{{res}}" download="qr.png" >Download</a>
     </div>
+    
 </div>
+
 {% endblock %}

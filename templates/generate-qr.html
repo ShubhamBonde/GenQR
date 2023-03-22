@@ -1,0 +1,12 @@
+
+{% extends "layout.html" %}
+{% block body %}
+
+<form action="/generated-qr" method="post" id="qr-form">
+    <label for="qrtext" class="qr-form-label" >Enter Text</label> <br>
+    <input type="text" id="qrtext" name="qrtext"  placeholder="Write your text here"> <br>
+    <input class="qr-form-ip" type="submit" value="Generate QR">
+</form>
+
+
+{% endblock %}

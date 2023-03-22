@@ -1,9 +1,8 @@
 
-import time
 from flask import redirect, request, Flask, render_template, send_file
-import urllib.parse as uparse
-import pyqrcode as qr
-import png
+import pyqrcode
+from io import BytesIO
+from base64 import b64encode
 
 app = Flask(__name__)
 
@@ -15,16 +14,24 @@ def index():
 
 @app.route("/generated-qr", methods=['GET', 'POST'])
 def genrator():
-    print("method is post now")
-    parsed_string = uparse.unquote(request.form.get('qrtext'))
-    qrstring = qr.create(parsed_string)
-    qrstring.png('./static/images/generated-qr.png', scale=50)
-    return render_template('generator.html', url=parsed_string)
+    buffer = BytesIO()
+    received_url = request.form.get('qrtext')
+    if (received_url==''):
+        return render_template('generate-qr.html', msg="Please add text to generate the QR!")
+    
+    qr_code = pyqrcode.create(received_url)
+    qr_code.png(buffer, scale=30)
+    buffer.seek(0)
+    response = send_file(buffer, mimetype='image/png')
+    res=b64encode(buffer.getvalue())
+    res = res.decode('utf8')
+    return render_template('generator.html', res=res)
+
 
 
 @app.route("/download")
 def download_file():
-    path = "D:\WEB_DEV\Qr code site\static\images\generated-qr.png"
+    path = "./static/images/generated-qr.png"
     return send_file(path, as_attachment=True)
 
 
@@ -33,7 +40,12 @@ def show():
     return render_template("show.html")
     
     
+@app.route('/generate-qr', methods=['GET', 'POST'])
+def generate_qr():
+    return render_template('generate-qr.html')
 
-
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template('page_not_found.html')
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='0.0.0.0',port=8000,debug=True)

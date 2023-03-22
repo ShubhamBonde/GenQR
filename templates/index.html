@@ -1,8 +1,27 @@
 {% extends "layout.html" %}
 {% block body %}
-<form action="/generated-qr" method="post" >
-    <label for="qrtext">Enter Text:</label>
-    <input type="text" id="qrtext" name="qrtext">
-    <input type="submit" value="Generate QR">
-</form>
+
+
+<section class="services">
+    <div class="box1 box">
+        <img src="../static/icons/sign-in.svg" alt="No sign in required">
+        <div class="box-text">
+            <h3>No sign in required.</h3>
+        </div>
+    </div>
+    <div class="box2 box">
+        <img src="../static/icons/cursor-click.svg" alt="Generate your QR codes in just a click.">
+        <div class="box-text">
+            <h3>Generate your QR codes in just a click without threshold limit.</h3>
+        </div>
+    </div>
+    <div class="box3 box">
+        <img src="../static/icons/qr-code.svg" alt="Generate once and use everywhere">
+        <div class="box-text">
+            <h3>Generate once and use everywhere.</h3>
+        </div>
+    </div>
+</section>
+
+
 {% endblock %}

@@ -4,13 +4,58 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Document</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <script defer src="../static/js/app.js"></script>
+    <title>GenQR</title>
 </head>
 <body>
-    <div class="heading">GENQR</div>
+
+    <nav class="top-nav">
+        <a href="/" class="heading">GenQR</a>
+        <ul class="nav-links">
+            <li class="nav-link"><a target="_parent" href="/generate-qr">Generate New QR</a></li>
+            <li class="nav-link"><a target="_parent" href="/about">About</a></li>
+            <li class="nav-link"><a target="_parent" href="/contact">Contact</a></li>
+            <li class="nav-link"><a target="_parent" href="/privacy_policy">Privacy Policy</a></li>
+        </ul>
+
+        <div class="hamburger-menu">
+            <div class="line line-1"></div>
+            <div class="line line-2"></div>
+            <div class="line line-3"></div>
+        </div>
+    </nav>
+    <ul class="nav-links-mobile">
+        <li class="nav-link"><a target="_parent" href="/">Generate New QR</a></li>
+        <li class="nav-link"><a target="_parent" href="/about">About</a></li>
+        <li class="nav-link"><a target="_parent" href="/contact">Contact</a></li>
+        <li class="nav-link"><a target="_parent" href="/privacy_policy">Privacy Policy</a></li>
+    </ul>
+
+
+    <div class="hero">
+        <div class="bg-shade">
+            <h1 class="hero-head">
+                GenQR
+            </h1>
+    
+            <p class="tagline">No BS One click QR code generator</p>
+            <button onclick="window.open('/generate-qr', '_parent')" class="hero-btn">Generate</button>
+        </div>
+    <div class="back-drop inactive">
+
+    </div>
+    {% if msg %}
+    <div class="flash-msg">
+            {{msg}}
+    </div>
+    {% endif %}
     {% block body %}
         <!-- your site will rendered here -->
     {% endblock %}
+
+    <footer class="footer">
+        <h1>FIND ME ON GITHUB @ShubhamBonde</h1>
+    </footer>
 </body>
 </html>
